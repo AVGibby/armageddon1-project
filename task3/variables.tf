@@ -1,39 +1,40 @@
+# ===========================================================
+# Networks Configuration for Drizzle-Drizzle Games
+# ===========================================================
 variable "networks" {
   description = "Configuration for Drizzle Drizzle Gaming Networks"
   type        = map(map(string))
   default = {
-    "drizzle-games-network-eu" = {
-      "vpc_name"                = "drizzle-games-network-eu"
+    "drizzle-drizzle-games-network-eu" = {
+      "vpc_name"                = "drizzle-drizzle-games-network-eu"
       "auto_create_subnetworks" = "false"
 
-      "subnet_name"          = "drizzle-games-hq"
+      "subnet_name"          = "drizzle-drizzle-games-hq"
       "subnet_location"      = "europe-west6"
       "subnet_ip_cidr_range" = "10.129.1.0/24"
     }
 
-    "drizzle-games-network-na" = {
-      "vpc_name"                = "drizzle-games-network-na"
+    "drizzle-drizzle-games-network-na" = {
+      "vpc_name"                = "drizzle-drizzle-games-network-na"
       "auto_create_subnetworks" = "false"
 
-      "subnet_name"          = "drizzle-games-na-office"
+      "subnet_name"          = "drizzle-drizzle-games-na-office"
       "subnet_location"      = "us-east1"
       "subnet_ip_cidr_range" = "172.16.35.0/24"
     }
-
-    "drizzle-games-network-sa" = {
-      "vpc_name"                = "drizzle-games-network-sa"
+    "drizzle-drizzle-games-network-sa" = {
+      "vpc_name"                = "drizzle-drizzle-games-network-sa"
       "auto_create_subnetworks" = "false"
 
-      "subnet_name"          = "drizzle-games-sa-office"
+      "subnet_name"          = "drizzle-drizzle-games-sa-office"
       "subnet_location"      = "southamerica-east1"
       "subnet_ip_cidr_range" = "172.16.36.0/24"
     }
-
-    "drizzle-games-network-asia" = {
-      "vpc_name"                = "drizzle-games-network-asia"
+    "drizzle-drizzle-games-network-asia" = {
+      "vpc_name"                = "drizzle-drizzle-games-network-asia"
       "auto_create_subnetworks" = "false"
 
-      "subnet_name"          = "drizzle-games-asia-office"
+      "subnet_name"          = "drizzle-drizzle-games-asia-office"
       "subnet_location"      = "asia-south2"
       "subnet_ip_cidr_range" = "192.168.44.0/24"
     }
@@ -50,9 +51,10 @@ variable "vms" {
       "vm_image"          = "projects/debian-cloud/global/images/debian-12-bookworm-v20240415"
       "vm_size"           = "10"
       "vm_auto_delete"    = "true"
-      "vm_subnet"         = "projects/composed-garden-417100/regions/europe-west6/subnetworks/drizzle-games-hq"
-      "vm_startup_script" = "echo hi > /test.txt"
+      "vm_subnet"         = "projects/composed-garden-417100/regions/europe-west6/subnetworks/drizzle-drizzle-games-hq"
+      "vm_startup_script" = true
       "vm_external_ip"    = "false"
+      "http-server"       = true
     }
 
     "na-vm" = {
@@ -62,9 +64,10 @@ variable "vms" {
       "vm_image"          = "projects/debian-cloud/global/images/debian-12-bookworm-v20240415"
       "vm_size"           = "10"
       "vm_auto_delete"    = "true"
-      "vm_subnet"         = "projects/composed-garden-417100/regions/us-east1/subnetworks/drizzle-games-na-office"
-      "vm_startup_script" = "echo hi > /test.txt"
+      "vm_subnet"         = "projects/composed-garden-417100/regions/us-east1/subnetworks/drizzle-drizzle-games-na-office"
+      "vm_startup_script" = false
       "vm_external_ip"    = "false"
+      "http-server"       = false
     }
 
     "sa-vm" = {
@@ -74,9 +77,10 @@ variable "vms" {
       "vm_image"          = "projects/debian-cloud/global/images/debian-12-bookworm-v20240415"
       "vm_size"           = "10"
       "vm_auto_delete"    = "true"
-      "vm_subnet"         = "projects/composed-garden-417100/regions/southamerica-east1/subnetworks/drizzle-games-sa-office"
-      "vm_startup_script" = "echo hi > /test.txt"
+      "vm_subnet"         = "projects/composed-garden-417100/regions/southamerica-east1/subnetworks/drizzle-drizzle-games-sa-office"
+      "vm_startup_script" = false
       "vm_external_ip"    = "false"
+      "http-server"       = false
     }
 
     "asia-vm" = {
@@ -86,9 +90,10 @@ variable "vms" {
       "vm_image"          = "projects/debian-cloud/global/images/debian-12-bookworm-v20240415"
       "vm_size"           = "10"
       "vm_auto_delete"    = "true"
-      "vm_subnet"         = "projects/composed-garden-417100/regions/asia-south2/subnetworks/drizzle-games-asia-office"
-      "vm_startup_script" = "echo hi > /test.txt"
+      "vm_subnet"         = "projects/composed-garden-417100/regions/asia-south2/subnetworks/drizzle-drizzle-games-asia-office"
+      "vm_startup_script" = false
       "vm_external_ip"    = "false"
+      "http-server"       = false
     }
   }
 }
