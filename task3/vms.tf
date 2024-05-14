@@ -2,7 +2,10 @@
 resource "google_compute_instance" "drizzle-drizzle-games-vm" {
   for_each = var.vms
 
-  depends_on = [google_compute_subnetwork.drizzle-drizzle-games-subnets]
+  depends_on = [
+    google_compute_subnetwork.drizzle-drizzle-games-subnets
+  ]
+  
 
   name         = each.value["vm_name"]
   machine_type = each.value["vm_machine_type"]
@@ -21,9 +24,10 @@ resource "google_compute_instance" "drizzle-drizzle-games-vm" {
     subnetwork = each.value["vm_subnet"]
 
     dynamic "access_config" {
-      for_each = each.value.http-server ? [1] : []
+      for_each = each.value.vm_external_ip ? [1] : [] # tests an interation's flag, "vm_external_ip", to see if true, if not, it will skip that iteration
       content {
         // This block will be included only if http-server is true
+        # nat_ip = each.key == "eu-vm" ? google_compute_address.eu_static_ip.address : google_compute_address.asia_static_ip.address
       }
     }
   }

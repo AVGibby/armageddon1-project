@@ -3,8 +3,8 @@
 #   region = "asia-southeast1"
 # }
 
-resource "google_compute_network" "gibby-armageddon-vpc" {
-  name                    = "gibby-armageddon-vpc"
+resource "google_compute_network" "thismynetwork" {
+  name                    = "thismynetwork"
   auto_create_subnetworks = false
 }
 
@@ -59,7 +59,6 @@ resource "google_compute_firewall" "armageddon-firewall" {
     ports    = ["80"]
   }
 }
-
 
 /* 
 additionally do I need to have the other firewall rule present for it to work
